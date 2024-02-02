@@ -1,5 +1,6 @@
 const canvas = document.querySelector('#draw')
 const ctx = canvas.getContext('2d');
+const clear = document.querySelector('#clear')
 
 canvas.width = window.innerWidth;
 canvas.heigth = window.innerHeight;
@@ -16,8 +17,7 @@ let direction = false;
 
 function draw(e) {
   if (!isDrawing) return;
-  console.log(e)
-  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`
+  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
   ctx.beginPath();
   //start from x = 0, y= 0
   ctx.moveTo(lastX, lastY);
@@ -50,4 +50,8 @@ canvas.addEventListener('mousedown', (e) => {
 canvas.addEventListener('mousemove', draw)
 canvas.addEventListener('mouseup', () => isDrawing = false);
 canvas.addEventListener('mouseout', () => isDrawing = false);
+
+clear.addEventListener('click', () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
+})
 
